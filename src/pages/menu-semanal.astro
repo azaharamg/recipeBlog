@@ -1,0 +1,98 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+
+const menu = [
+  {
+    day: "Lunes 13",
+    lunch: { title: "Pavo con Verduras", href: "/recipes/pavo-con-verduras/" },
+    snack: { title: "Compota de Manzana", href: "/recipes/compota-de-manzana/" },
+    dinner: { title: "Puerro y Patatas", href: "/recipes/puerro-y-patatas/" }
+  },
+  {
+    day: "Martes 14",
+    lunch: { title: "Pure de Merluza", href: "/recipes/pure-de-merluza/" },
+    snack: { title: "Papilla de Manzana, Uva y Mandarina", href: "/recipes/pure-de-uvas/" },
+    dinner: { title: "Puerro y Patatas", href: "/recipes/puerro-y-patatas/" }
+  },
+  {
+    day: "Miércoles 15",
+    lunch: { title: "Pavo con Guisantes", href: "/recipes/pavo-con-guisantes/" },
+    snack: { title: "Compota de Pera", href: "/recipes/compota-de-pera/" },
+    dinner: { title: "Arroz con Zanahoria", href: "/recipes/arroz-con-zanahoria/" }
+  },
+  {
+    day: "Jueves 16",
+    lunch: { title: "Pure de Calabaza y Calabacín", href: "/recipes/pure-de-calabaza-y-calabacin/" },
+    snack: { title: "Puré de Plátano", href: "/recipes/pure-de-platano/" },
+    dinner: { title: "Arroz con Zanahoria", href: "/recipes/arroz-con-zanahoria/" }
+  },
+  {
+    day: "Viernes 17",
+    lunch: { title: "Por decidir", href: "#" },
+    snack: { title: "Por decidir", href: "#" },
+    dinner: { title: "Por decidir", href: "#" }
+  },
+  {
+    day: "Sábado 18",
+    lunch: { title: "Por decidir", href: "#" },
+    snack: { title: "Por decidir", href: "#" },
+    dinner: { title: "Por decidir", href: "#" }
+  },
+  {
+    day: "Domingo 19",
+    lunch: { title: "Por decidir", href: "#" },
+    snack: { title: "Por decidir", href: "#" },
+    dinner: { title: "Por decidir", href: "#" }
+  }
+];
+
+const weekdays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+const meals = ["Almuerzo", "Merienda", "Cena"];
+---
+
+<BaseLayout pageTitle="Menú Semanal - Recetario">
+  <Header />
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-2xl uppercase tracking-widest text-center text-[var(--color-terracotta)] mb-4">
+      Menú Semanal
+    </h1>
+    <p class="text-center text-[var(--color-warm-gray)] mb-8">Semana del 13 al 19 de abril</p>
+
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse bg-[var(--color-cream)] rounded-xl overflow-hidden" role="table" aria-label="Planificación semanal de comidas">
+        <thead>
+          <tr class="bg-[var(--color-terracotta)] text-white">
+            <th class="p-3 text-left font-semibold text-sm uppercase" scope="col">Comida</th>
+            {weekdays.map((day) => (
+              <th class="p-3 text-center font-semibold text-sm uppercase" scope="col">{day}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {meals.map((meal, mealIndex) => (
+            <tr class="border-b border-[var(--color-charcoal)]/10">
+              <td class="p-3 font-semibold text-[var(--color-sage)] text-sm uppercase bg-white/50" scope="row">{meal}</td>
+              {menu.map((day) => {
+                const recipe = mealIndex === 0 ? day.lunch : mealIndex === 1 ? day.snack : day.dinner;
+                const isPlaceholder = recipe.title === "Por decidir";
+                
+                return (
+                  <td class="p-3 text-center">
+                    {isPlaceholder ? (
+                      <span class="text-[var(--color-warm-gray)] text-sm italic">{recipe.title}</span>
+                    ) : (
+                      <a href={recipe.href} class="text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] text-sm focus:text-[var(--color-terracotta)] block">
+                        {recipe.title}
+                      </a>
+                    )}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</BaseLayout>

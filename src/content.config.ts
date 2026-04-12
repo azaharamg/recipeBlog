@@ -8,7 +8,7 @@ const recipe = defineCollection({
   schema: z.object({
     title: z.string(),
     pubDate: z.date(),
-    category: z.enum(["adults", "kids"]).optional().default("adults"),
+    category: z.enum(["kids", "traditional", "desserts"]).optional().default("traditional"),
   }),
 });
 // Export a single `collections` object to register your collection(s)

@@ -2,6 +2,7 @@
 layout: ../../layouts/MarkdownLayout.astro
 title: "Tarta de la Abuela"
 pubDate: 2025-10-17
+category: desserts
 ---
 
 ## Ingredientes

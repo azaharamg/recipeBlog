@@ -6,12 +6,14 @@ const { frontmatter } = Astro.props;
 
 <BaseLayout pageTitle={frontmatter.title}>
   <Header />
-  <main class="max-w-4xl mx-auto px-4 py-8">
+  <main id="main-content" class="max-w-4xl mx-auto px-4 py-8">
     <article class="bg-white rounded-2xl shadow-sm p-8 md:p-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-charcoal mb-6">
+      <h1 class="text-3xl md:text-4xl font-bold text-[var(--color-charcoal)] mb-6">
         {frontmatter.title}
       </h1>
-      <slot />
+      <div class="prose prose-lg max-w-none text-[var(--color-charcoal)]">
+        <slot />
+      </div>
     </article>
   </main>
 </BaseLayout>

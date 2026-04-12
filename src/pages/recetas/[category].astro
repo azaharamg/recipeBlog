@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import RecipesSection from "../../components/RecipesSection";
+
+export function getStaticPaths() {
+  return [
+    { params: { category: "kids" } },
+    { params: { category: "traditional" } },
+    { params: { category: "desserts" } },
+  ];
+}
+
+const { category } = Astro.params;
+
+const allRecipes = await getCollection("recipe");
+
+const recipes = allRecipes
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .map((r) => ({
+    id: r.id,
+    title: r.data.title,
+    href: `/recipes/${r.id}/`,
+    category: r.data.category,
+    pubDate: r.data.pubDate.toISOString(),
+  }));
+
+const filteredRecipes = recipes.filter(r => r.category === category);
+
+let title = "Recetas Infantiles";
+let icon = "kids";
+
+if (category === "traditional") {
+  title = "Recetas Tradicionales";
+  icon = "traditional";
+} else if (category === "desserts") {
+  title = "Postres";
+  icon = "desserts";
+}
+---
+
+<BaseLayout pageTitle={`${title} - Recetario`}>
+  <Header />
+  <main id="main-content" class="max-w-6xl mx-auto px-4 py-12">
+    <h1 class="text-2xl uppercase tracking-widest text-center text-[var(--color-terracotta)] mb-8">
+      {title}
+    </h1>
+    <RecipesSection 
+      client:load 
+      recipes={filteredRecipes}
+      icon={icon}
+    />
+  </main>
+</BaseLayout>

@@ -1,11 +1,19 @@
 ---
 ---
-<header class="flex items-center justify-between px-8 py-4 bg-white/80 backdrop-blur-sm border-b border-terracotta/20 sticky top-0 z-50">
-  <a href="/" class="flex items-center gap-2 text-xl font-semibold text-charcoal hover:text-terracotta transition-colors">
-    <svg class="w-8 h-8 text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
-      <line x1="6" y1="17" x2="18" y2="17"/>
-    </svg>
-    <span>Recetario</span>
-  </a>
+<header class="flex items-center justify-between px-8 py-4 bg-white/80 backdrop-blur-sm border-b border-[var(--color-terracotta)]/20 sticky top-0 z-50" role="banner">
+  <div class="flex items-center gap-8">
+    <a href="/" class="flex items-center gap-2 text-xl font-semibold text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] transition-colors shrink-0" aria-label="Ir a la página principal">
+      <svg class="w-8 h-8 text-[var(--color-terracotta)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z"/>
+        <line x1="6" y1="17" x2="18" y2="17"/>
+      </svg>
+      <span>Recetario</span>
+    </a>
+    <nav aria-label="Navegación principal" class="flex gap-6">
+      <a href="/recetas/kids" class="text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] transition-colors focus:text-[var(--color-terracotta)]">Recetas Infantiles</a>
+      <a href="/recetas/traditional" class="text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] transition-colors focus:text-[var(--color-terracotta)]">Recetas Tradicionales</a>
+      <a href="/recetas/desserts" class="text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] transition-colors focus:text-[var(--color-terracotta)]">Postres</a>
+    </nav>
+  </div>
+  <a href="/menu-semanal" class="text-[var(--color-charcoal)] hover:text-[var(--color-terracotta)] transition-colors focus:text-[var(--color-terracotta)] whitespace-nowrap" aria-label="Ver menú semanal">Menú Semanal</a>
 </header>
